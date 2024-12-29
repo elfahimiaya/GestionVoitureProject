@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">EurekaFeignClient</a> &gt; <a href="index.source.html" class="el_package">exemple.eurekafeignclient.entities</a> &gt; <span class="el_source">Client.java</span></div><h1>Client.java</h1><pre class="source lang-java linenums">package exemple.eurekafeignclient.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+
+@Entity
+
+public class Client {
+    @Id
+    @GeneratedValue()
+    private Long id;
+    private String nom;
+    private int age;
+
+
+    public Long getId() {
+<span class="nc" id="L19">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="fc" id="L23">        this.id = id;</span>
+<span class="fc" id="L24">    }</span>
+
+    public int getAge() {
+<span class="nc" id="L27">        return age;</span>
+    }
+
+    public void setAge(int age) {
+<span class="nc" id="L31">        this.age = age;</span>
+<span class="nc" id="L32">    }</span>
+
+    public String getNom() {
+<span class="nc" id="L35">        return nom;</span>
+    }
+
+    public void setNom(String nom) {
+<span class="fc" id="L39">        this.nom = nom;</span>
+<span class="fc" id="L40">    }</span>
+
+<span class="fc" id="L42">    public Client() {</span>
+<span class="fc" id="L43">    }</span>
+
+<span class="nc" id="L45">    public Client(Long id, String nom, int age) {</span>
+<span class="nc" id="L46">        this.id = id;</span>
+<span class="nc" id="L47">        this.nom = nom;</span>
+<span class="nc" id="L48">        this.age = age;</span>
+<span class="nc" id="L49">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

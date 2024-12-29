@@ -1,0 +1,52 @@
+
+`exemple.eurekaclient.controller.ClientController#getClient(Ljava/lang/Long;)Ljava/util/Optional;–
+‹C:/Users/PC/Desktop/emsi/5IIR/spring boot - vendredi/FeignClient/Client/src/main/java/exemple/eurekaclient/controller/ClientController.java (%"startingBlock*›
+startingBlock% (<~
+|
+ (
+%1"
+__annotate**
+
+__unknown_file (
+
+GetMapping*2
+
+__unknown_file (
+
+idjava.lang.Long€
+~
+& (3
+%2"
+__annotate*,
+
+__unknown_file (
+PathVariable*2
+
+__unknown_file (
+
+idjava.lang.Longx
+v
+9 (;
+idjava.lang.Long"__annotation*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%2*
+1*×
+1 (³
+°
+ (6
+%00exemple.eurekaclient.repository.ClientRepository"__id*f
+
+__unknown_file (J*H2
+0exemple.eurekaclient.controller.ClientController"
+clientRepository"
+ (-
+"": 
+& (;
+idjava.lang.LongB42
+0exemple.eurekaclient.controller.ClientControllerH

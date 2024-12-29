@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: exemple.eurekaclient.ClientControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.753 s -- in exemple.eurekaclient.ClientControllerTest

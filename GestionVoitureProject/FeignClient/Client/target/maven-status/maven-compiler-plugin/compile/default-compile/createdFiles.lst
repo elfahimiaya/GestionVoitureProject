@@ -1,0 +1,4 @@
+exemple\eurekaclient\entities\Client.class
+exemple\eurekaclient\repository\ClientRepository.class
+exemple\eurekaclient\controller\ClientController.class
+exemple\eurekaclient\EurekaClientApplication.class

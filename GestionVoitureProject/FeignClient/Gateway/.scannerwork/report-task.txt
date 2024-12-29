@@ -1,0 +1,7 @@
+organization=sonarprojectelfahimi
+projectKey=sonarprojectelfahimi_eurekagateway-service
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.58741
+dashboardUrl=https://sonarcloud.io/dashboard?id=sonarprojectelfahimi_eurekagateway-service
+ceTaskId=AZQOX5xL3FroQZWKmB5Q
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZQOX5xL3FroQZWKmB5Q

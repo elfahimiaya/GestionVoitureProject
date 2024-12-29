@@ -1,0 +1,89 @@
+<div class="dialog-container">
+  <div class="dialog-box">
+    <h2>{{ isEditMode ? 'Modifier' : 'Ajouter' }} une Voiture</h2>
+
+    <form (ngSubmit)="ajouterVoiture()" #voitureForm="ngForm">
+      <!-- Marque Field -->
+      <div class="form-group">
+        <label for="marque">Marque</label>
+        <input
+          type="text"
+          class="form-control"
+          id="marque"
+          [(ngModel)]="newVoiture.marque"
+          name="marque"
+          required
+          #marque="ngModel"
+        />
+        <div *ngIf="marque.invalid && marque.touched" class="text-danger">
+          Marque est obligatoire.
+        </div>
+      </div>
+
+      <!-- Modèle Field -->
+      <div class="form-group">
+        <label for="model">Modèle</label>
+        <input
+          type="text"
+          class="form-control"
+          id="model"
+          [(ngModel)]="newVoiture.model"
+          name="model"
+          required
+          #model="ngModel"
+        />
+        <div *ngIf="model.invalid && model.touched" class="text-danger">
+          Modèle est obligatoire.
+        </div>
+      </div>
+
+      <!-- Matricule Field -->
+      <div class="form-group">
+        <label for="matricule">Matricule</label>
+        <input
+          type="text"
+          class="form-control"
+          id="matricule"
+          [(ngModel)]="newVoiture.matricule"
+          name="matricule"
+          required
+          #matricule="ngModel"
+        />
+        <div *ngIf="matricule.invalid && matricule.touched" class="text-danger">
+          Matricule est obligatoire.
+        </div>
+      </div>
+
+      <!-- Client Selection -->
+      <div class="form-group">
+        <label for="client">Sélectionner un Client</label>
+        <select
+          id="client"
+          class="form-control"
+          [(ngModel)]="selectedClientId"
+          name="client"
+          required
+          #client="ngModel"
+        >
+          <option value="0" disabled>-- Sélectionnez un client --</option>
+          <option *ngFor="let client of clients" [value]="client.id">
+            {{ client.nom }}
+          </option>
+        </select>
+        <div *ngIf="client.invalid && client.touched" class="text-danger">
+          Veuillez sélectionner un client.
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="voitureForm.invalid"
+      >
+        {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onClose()">Annuler</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Liste des Clients</h2>
+  
+    <div *ngIf="clients.length === 0" class="alert alert-warning">
+      Aucun client trouvé.
+    </div>
+  
+    <br>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Age</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.id }}</td>
+          <td>{{ client.nom }}</td>
+          <td>{{ client.age }}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

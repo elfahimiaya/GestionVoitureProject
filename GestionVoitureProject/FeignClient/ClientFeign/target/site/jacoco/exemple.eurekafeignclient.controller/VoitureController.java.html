@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VoitureController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">EurekaFeignClient</a> &gt; <a href="index.source.html" class="el_package">exemple.eurekafeignclient.controller</a> &gt; <span class="el_source">VoitureController.java</span></div><h1>VoitureController.java</h1><pre class="source lang-java linenums">package exemple.eurekafeignclient.controller;
+
+import exemple.eurekafeignclient.entities.Client;
+import exemple.eurekafeignclient.entities.Voiture;
+import exemple.eurekafeignclient.repository.VoitureRepository;
+import exemple.eurekafeignclient.service.ClientService;
+import exemple.eurekafeignclient.service.VoitureService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@RestController
+public class VoitureController {
+
+
+    private final VoitureService voitureService;
+    private final ClientService clientService;
+    private final VoitureRepository voitureRepository;
+
+<span class="fc" id="L24">    public VoitureController(VoitureService voitureService, ClientService clientService, VoitureRepository voitureRepository) {</span>
+<span class="fc" id="L25">        this.voitureService = voitureService;</span>
+<span class="fc" id="L26">        this.clientService = clientService;</span>
+<span class="fc" id="L27">        this.voitureRepository = voitureRepository;</span>
+<span class="fc" id="L28">    }</span>
+
+    @GetMapping(&quot;/voituress&quot;)
+    public List&lt;Voiture&gt; getVoitures() {
+<span class="fc" id="L32">        return voitureService.findAll().stream().map(voiture -&gt; {</span>
+<span class="fc" id="L33">            Client client = clientService.getClient(voiture.getId_client());</span>
+<span class="fc" id="L34">            voiture.setClient(client); // Explicitly set the client</span>
+<span class="fc" id="L35">            return voiture;</span>
+<span class="fc" id="L36">        }).collect(Collectors.toList());</span>
+    }
+
+    @GetMapping(value = &quot;/voitures&quot;, produces = {&quot;application/json&quot;})
+    public ResponseEntity&lt;Object&gt; findAll() {
+        try {
+<span class="nc" id="L42">            List&lt;Voiture&gt; voitures = voitureService.findAll().stream().map(voiture -&gt; {</span>
+<span class="nc" id="L43">                voiture.setClient(clientService.getClient(voiture.getId_client()));</span>
+<span class="nc" id="L44">                return voiture;</span>
+<span class="nc" id="L45">            }).collect(Collectors.toList());</span>
+<span class="nc" id="L46">            return ResponseEntity.ok(voitures);</span>
+<span class="nc" id="L47">        } catch (Exception e) {</span>
+<span class="nc" id="L48">            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L49">                    .body(e.getMessage());</span>
+        }
+    }
+
+
+    @GetMapping(&quot;/voitures/{id}&quot;)
+    public ResponseEntity&lt;Object&gt; getVoitureById(@PathVariable Long id) {
+        try{
+<span class="fc" id="L57">            Voiture voiture = voitureRepository.findById(id).orElse(null);</span>
+
+<span class="fc" id="L59">            voiture.setClient(clientService.getClient(voiture.getId_client()));</span>
+<span class="fc" id="L60">            return ResponseEntity.ok(voiture);</span>
+<span class="nc" id="L61">        }catch (Exception e) {</span>
+<span class="nc" id="L62">            return ResponseEntity.status(HttpStatus.NOT_FOUND)</span>
+<span class="nc" id="L63">                    .body(&quot;Voiture not found with ID: &quot; + id);</span>
+        }
+    }
+
+    @PostMapping(&quot;/voitures/{clientId}&quot;)
+    public ResponseEntity&lt;Object&gt; save(@PathVariable(&quot;clientId&quot;) int clientId, @RequestBody Voiture voiture) {
+        try {
+<span class="fc" id="L70">            Client client = clientService.getClient(clientId);</span>
+
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">            if (client != null) {</span>
+<span class="fc" id="L73">                voiture.setClient(client);</span>
+
+<span class="fc" id="L75">                voiture.setId_client(clientId);</span>
+<span class="fc" id="L76">                voiture.setClient(client);</span>
+<span class="fc" id="L77">                Voiture savedVoiture = voitureService.save(voiture);</span>
+<span class="fc" id="L78">                return ResponseEntity.ok(savedVoiture);</span>
+            } else {
+<span class="nc" id="L80">                return ResponseEntity.status(HttpStatus.NOT_FOUND)</span>
+<span class="nc" id="L81">                        .body(&quot;Client not found with ID: &quot; + clientId);</span>
+            }
+<span class="nc" id="L83">        } catch (Exception e) {</span>
+<span class="nc" id="L84">            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L85">                    .body(e.getMessage());</span>
+        }
+
+    }
+
+    @PutMapping(&quot;/voitures/{id}&quot;)
+    public ResponseEntity&lt;Object&gt; update(@PathVariable Long id, @RequestBody Voiture updatedVoiture) {
+        try {
+<span class="fc" id="L93">            Voiture existingVoiture = voitureRepository.findById(id)</span>
+<span class="pc" id="L94">                    .orElseThrow(() -&gt; new Exception(&quot;Voiture not found with ID: &quot; + id));</span>
+
+<span class="pc bpc" id="L96" title="2 of 4 branches missed.">            if (updatedVoiture.getMatricule() != null &amp;&amp; !updatedVoiture.getMatricule().isEmpty()) {</span>
+<span class="fc" id="L97">                existingVoiture.setMatricule(updatedVoiture.getMatricule());</span>
+            }
+
+<span class="pc bpc" id="L100" title="2 of 4 branches missed.">            if (updatedVoiture.getMarque() != null &amp;&amp; !updatedVoiture.getMarque().isEmpty()) {</span>
+<span class="fc" id="L101">                existingVoiture.setMarque(updatedVoiture.getMarque());</span>
+            }
+
+<span class="pc bpc" id="L104" title="2 of 4 branches missed.">            if (updatedVoiture.getModel() != null &amp;&amp; !updatedVoiture.getModel().isEmpty()) {</span>
+<span class="fc" id="L105">                existingVoiture.setModel(updatedVoiture.getModel());</span>
+            }
+
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">            if (updatedVoiture.getId_client() &gt; 0) {</span>
+<span class="fc" id="L109">                Client client = clientService.getClient(updatedVoiture.getId_client());</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">                if (client != null) {</span>
+<span class="fc" id="L111">                    existingVoiture.setId_client(updatedVoiture.getId_client());</span>
+<span class="fc" id="L112">                    existingVoiture.setClient(client); // Mise à jour du client</span>
+                } else {
+<span class="nc" id="L114">                    return ResponseEntity.status(HttpStatus.NOT_FOUND)</span>
+<span class="nc" id="L115">                            .body(&quot;Client not found with ID: &quot; + updatedVoiture.getId_client());</span>
+                }
+            }
+
+<span class="fc" id="L119">            Voiture savedVoiture = voitureRepository.save(existingVoiture);</span>
+
+<span class="fc" id="L121">            return ResponseEntity.ok(savedVoiture);</span>
+<span class="nc" id="L122">        } catch (Exception e) {</span>
+<span class="nc" id="L123">            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L124">                    .body(&quot;Error: &quot; + e.getMessage());</span>
+        }
+    }
+
+
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

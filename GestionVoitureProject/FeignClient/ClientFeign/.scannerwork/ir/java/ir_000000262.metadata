@@ -1,0 +1,17 @@
+exemple.eurekafeignclient.service.VoitureService#update(Ljava/lang/Long;Lexemple/eurekafeignclient/entities/Voiture;)Lexemple/eurekafeignclient/entities/Voiture;
+false
+6f45f3d71e025516a68bf44d8eda3fe1
+java.util.Optional#get()Ljava/lang/Object;
+java.util.Optional#isPresent()Z
+==
+!unknownMethod! !unknownMethod!
+getClient exemple.eurekafeignclient.entities.Voiture#getClient()Lexemple/eurekafeignclient/entities/Client;
+getId_client exemple.eurekafeignclient.entities.Voiture#getId_client()I
+getMarque exemple.eurekafeignclient.entities.Voiture#getMarque()Ljava/lang/String;
+getMatricule exemple.eurekafeignclient.entities.Voiture#getMatricule()Ljava/lang/String;
+getModel exemple.eurekafeignclient.entities.Voiture#getModel()Ljava/lang/String;
+setClient exemple.eurekafeignclient.entities.Voiture#setClient(Lexemple/eurekafeignclient/entities/Client;)V
+setId_client exemple.eurekafeignclient.entities.Voiture#setId_client(I)V
+setMarque exemple.eurekafeignclient.entities.Voiture#setMarque(Ljava/lang/String;)V
+setMatricule exemple.eurekafeignclient.entities.Voiture#setMatricule(Ljava/lang/String;)V
+setModel exemple.eurekafeignclient.entities.Voiture#setModel(Ljava/lang/String;)V

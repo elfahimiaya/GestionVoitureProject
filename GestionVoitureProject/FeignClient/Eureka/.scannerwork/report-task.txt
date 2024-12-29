@@ -1,0 +1,7 @@
+organization=sonarprojectelfahimi
+projectKey=sonarprojectelfahimi_eureka-service
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.58741
+dashboardUrl=https://sonarcloud.io/dashboard?id=sonarprojectelfahimi_eureka-service
+ceTaskId=AZQOSrGSOqr6qfjIr7V3
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZQOSrGSOqr6qfjIr7V3

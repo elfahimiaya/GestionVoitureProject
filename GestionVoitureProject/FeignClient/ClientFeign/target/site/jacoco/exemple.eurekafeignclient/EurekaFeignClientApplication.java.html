@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EurekaFeignClientApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">EurekaFeignClient</a> &gt; <a href="index.source.html" class="el_package">exemple.eurekafeignclient</a> &gt; <span class="el_source">EurekaFeignClientApplication.java</span></div><h1>EurekaFeignClientApplication.java</h1><pre class="source lang-java linenums">package exemple.eurekafeignclient;
+
+import exemple.eurekafeignclient.entities.Client;
+import exemple.eurekafeignclient.entities.Voiture;
+import exemple.eurekafeignclient.repository.VoitureRepository;
+import exemple.eurekafeignclient.service.ClientService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+@EnableFeignClients
+<span class="nc" id="L15">public class EurekaFeignClientApplication {</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L18">        SpringApplication.run(EurekaFeignClientApplication.class, args);</span>
+<span class="nc" id="L19">    }</span>
+
+    @Bean
+    CommandLineRunner initializerBaseH2(VoitureRepository voitureRepository, ClientService clientService) {
+<span class="nc" id="L23">        return args -&gt; {</span>
+<span class="nc" id="L24">            Client c1 = clientService.getClient(1);</span>
+<span class="nc" id="L25">            Client c2 = clientService.getClient(2);</span>
+
+<span class="nc" id="L27">            voitureRepository.save(new Voiture(null, &quot;Toyota&quot;, &quot;A25333&quot;, &quot;Corolla&quot;, c1.getId().intValue(), c1));</span>
+<span class="nc" id="L28">            voitureRepository.save(new Voiture(null, &quot;Renault&quot;, &quot;B63456&quot;, &quot;Magane&quot;, c2.getId().intValue(), c2));</span>
+<span class="nc" id="L29">            voitureRepository.save(new Voiture(null, &quot;Peugeot&quot;, &quot;A554444&quot;, &quot;301&quot;, c1.getId().intValue(), c1));</span>
+
+<span class="nc" id="L31">            voitureRepository.findAll().forEach(voiture -&gt; {</span>
+<span class="nc" id="L32">                Client client = clientService.getClient(voiture.getId_client());</span>
+<span class="nc" id="L33">                voiture.setClient(client);</span>
+<span class="nc" id="L34">                System.out.println(voiture);</span>
+<span class="nc" id="L35">            });</span>
+<span class="nc" id="L36">        };</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,36 @@
+<div class="container">
+  <h2>Liste des Voitures</h2>
+
+  <button class="btn btn-success btn-sm" (click)="openAddDialog()">Ajouter</button>
+  <br>
+  <br>
+
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Client</th>
+        <th>Marque</th>
+        <th>Modèle</th>
+        <th>Matricule</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let voiture of voitures" [hidden]="voiture.isDeleted">
+        <td>{{ voiture.id }}</td>
+        <td>{{ voiture.client?.nom || 'Non attribué' }}</td>
+        <td>{{ voiture.marque }}</td>
+        <td>{{ voiture.model }}</td>
+        <td>{{ voiture.matricule }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="openEditDialog(voiture)">Modifier</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteVoiture(voiture)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

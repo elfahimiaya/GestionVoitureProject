@@ -1,0 +1,9 @@
+exemple.eurekafeignclient.controller.VoitureController#getVoitures()Ljava/util/List;
+false
+2575f9ba9a0eb36e3fc78cf6ea55e445
+java.util.stream.Collectors#toList()Ljava/util/stream/Collector;
+==
+collect java.util.stream.Stream#collect(Ljava/util/stream/Collector;)Ljava/lang/Object;
+findAll exemple.eurekafeignclient.service.VoitureService#findAll()Ljava/util/List;
+map java.util.stream.Stream#map(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+stream java.util.Collection#stream()Ljava/util/stream/Stream;

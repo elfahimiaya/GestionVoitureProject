@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+EurekaFeignClient,exemple.eurekafeignclient.service,VoitureService,66,0,2,0,18,0,7,0,6,0
+EurekaFeignClient,exemple.eurekafeignclient,EurekaFeignClientApplication,80,0,0,0,15,0,5,0,5,0
+EurekaFeignClient,exemple.eurekafeignclient.entities,Client,25,11,0,0,10,6,5,3,5,3
+EurekaFeignClient,exemple.eurekafeignclient.entities,Voiture,41,39,0,0,11,17,4,11,4,11
+EurekaFeignClient,exemple.eurekafeignclient.controller,VoitureController,71,146,9,9,21,35,12,6,3,6

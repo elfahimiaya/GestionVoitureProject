@@ -1,0 +1,7 @@
+organization=sonarprojectelfahimi
+projectKey=sonarprojectelfahimi_voiture-service
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.58741
+dashboardUrl=https://sonarcloud.io/dashboard?id=sonarprojectelfahimi_voiture-service
+ceTaskId=AZQOerP0Oqr6qfjIr7f_
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZQOerP0Oqr6qfjIr7f_
